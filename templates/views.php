@@ -3,7 +3,7 @@
 
 function logo_html(): string
 {
-    return '<span class="logo"><img class="logo-icon" src="' . App::basePath() . 'assets/brand/jimohne-icon.svg?v=3" alt="" width="30" height="30"><span class="logo-word">' . e(mb_strtolower(App::$cfg['brand']['name'])) . '</span><span class="logo-sub">Mail</span></span>';
+    return '<span class="logo"><img class="logo-icon" src="' . App::basePath() . 'assets/brand/jimohne-icon.svg?v=3" alt="' . e(App::$cfg['brand']['name']) . '" width="30" height="30"><span class="logo-sub">Mail</span></span>';
 }
 
 function icon(string $n): string

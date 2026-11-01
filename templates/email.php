@@ -14,7 +14,7 @@ function jimohne_email(string $bodyHtml, array $cfg, string $fromEmail, bool $si
     $site = preg_replace('#^https?://#', '', $b['website']);
     $initial = mb_strtoupper(mb_substr($b['name'], 0, 1));
     $brandBase = rtrim($b['website'], '/') . '/mail/assets/brand/';
-    $logoUrl = $brandBase . 'jimohne-logo-white.png?v=3';
+    $logoUrl = $brandBase . 'jimohne-icon-white-512.png?v=3';
     $iconUrl = $brandBase . 'jimohne-icon-512.png?v=3';
 
     $sig = '';
@@ -52,7 +52,7 @@ function jimohne_email(string $bodyHtml, array $cfg, string $fromEmail, bool $si
       <!-- header -->
       <tr><td class="jm-h" align="center" style="background:' . $ink . ';padding:40px 56px 34px 56px">
         <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td align="center">
-          <img src="' . e($logoUrl) . '" width="230" height="86" alt="' . e($b['name']) . '" style="display:block;width:230px;height:auto;border:0;margin:0 auto">
+          <img src="' . e($logoUrl) . '" width="72" height="72" alt="' . e($b['name']) . '" style="display:block;width:72px;height:72px;border:0;margin:0 auto">
         </td></tr>
         <tr><td align="center" style="padding-top:12px">
           <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
