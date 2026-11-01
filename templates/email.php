@@ -14,8 +14,8 @@ function jimohne_email(string $bodyHtml, array $cfg, string $fromEmail, bool $si
     $site = preg_replace('#^https?://#', '', $b['website']);
     $initial = mb_strtoupper(mb_substr($b['name'], 0, 1));
     $brandBase = rtrim($b['website'], '/') . '/mail/assets/brand/';
-    $logoUrl = $brandBase . 'jimohne-logo-white.png';
-    $iconUrl = $brandBase . 'jimohne-icon-512.png';
+    $logoUrl = $brandBase . 'jimohne-logo-white.png?v=3';
+    $iconUrl = $brandBase . 'jimohne-icon-512.png?v=3';
 
     $sig = '';
     if ($signature) {

@@ -3,7 +3,7 @@
 
 function logo_html(): string
 {
-    return '<span class="logo"><img class="logo-icon" src="' . App::basePath() . 'assets/brand/jimohne-icon.svg" alt="" width="30" height="30"><span class="logo-word">' . e(mb_strtolower(App::$cfg['brand']['name'])) . '</span><span class="logo-sub">Mail</span></span>';
+    return '<span class="logo"><img class="logo-icon" src="' . App::basePath() . 'assets/brand/jimohne-icon.svg?v=3" alt="" width="30" height="30"><span class="logo-word">' . e(mb_strtolower(App::$cfg['brand']['name'])) . '</span><span class="logo-sub">Mail</span></span>';
 }
 
 function icon(string $n): string
@@ -40,7 +40,7 @@ function head(string $title): void
     echo '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">'
         . '<title>' . e($title) . ' · ' . e(App::$cfg['brand']['name']) . ' Mail</title>'
         . '<meta name="robots" content="noindex,nofollow">'
-        . '<link rel="icon" href="' . App::basePath() . 'assets/brand/jimohne-icon.svg" type="image/svg+xml"><link rel="icon" href="' . App::basePath() . 'assets/brand/favicon-64.png" sizes="64x64" type="image/png"><link rel="apple-touch-icon" href="' . App::basePath() . 'assets/brand/apple-touch-icon.png">'
+        . '<link rel="icon" href="' . App::basePath() . 'assets/brand/jimohne-icon.svg?v=3" type="image/svg+xml"><link rel="icon" href="' . App::basePath() . 'assets/brand/favicon-64.png?v=3" sizes="64x64" type="image/png"><link rel="apple-touch-icon" href="' . App::basePath() . 'assets/brand/apple-touch-icon.png?v=3">'
         . '<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fredoka:wght@600&display=swap" rel="stylesheet">'
         . '<link rel="stylesheet" href="' . App::basePath() . 'assets/style.css?v=5">'
         . '<style>:root{--accent:' . e($accent) . '}</style></head><body>';
