@@ -1,0 +1,23 @@
+# Jimohne Mail
+Options -Indexes
+DirectoryIndex index.php
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Force HTTPS
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  # Block private folders and files
+  RewriteRule ^(lib|templates|data|\.git)(/|$) - [F,L]
+  RewriteRule ^(config(\.sample)?\.php|README\.md|composer\.json|\.gitignore)$ - [F,L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=31536000"
+</IfModule>
+
+# Uploads up to 25 MB
+<IfModule mod_php.c>
+  php_value upload_max_filesize 25M
+  php_value post_max_size 30M
+</IfModule>
