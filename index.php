@@ -184,7 +184,7 @@ function build_html(string $body, string $quote, bool $tpl, bool $sig): string
 {
     $html = compose_text_to_html($body);
     if (trim($quote) !== '') {
-        $html .= '<div style="margin-top:24px;padding-left:14px;border-left:3px solid #d5dbe3;color:#5b6772;font-size:14px">' . nl2br(htmlspecialchars(preg_replace('/^> ?/m', '', $quote), ENT_QUOTES, 'UTF-8')) . '</div>';
+        $html .= '<div style="margin-top:24px;padding-left:14px;border-left:2px solid #e7dcc7;color:#8a8478;font-size:14px;font-style:italic">' . nl2br(htmlspecialchars(preg_replace('/^> ?/m', '', $quote), ENT_QUOTES, 'UTF-8')) . '</div>';
     }
     if ($tpl) return jimohne_email($html, App::$cfg, (string)App::user(), $sig);
     $s = App::$cfg['signature'];

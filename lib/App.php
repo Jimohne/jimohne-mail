@@ -196,7 +196,7 @@ class App
         foreach ($list as $f) {
             if (in_array('\\noselect', $f['flags'], true)) continue;
             $role = array_search($f['name'], $roles, true) ?: '';
-            $label = $role ? ucfirst($role) : Imap::decodeFolder(preg_replace('/^INBOX[.\/]/i', '', $f['name']));
+            $label = $role ? ($role === 'junk' ? 'Spam' : ucfirst($role)) : Imap::decodeFolder(preg_replace('/^INBOX[.\/]/i', '', $f['name']));
             $out['all'][] = ['name' => $f['name'], 'label' => $label, 'role' => $role];
         }
         $order = ['inbox' => 0, 'drafts' => 1, 'sent' => 2, 'archive' => 3, 'junk' => 4, 'trash' => 5, '' => 9];

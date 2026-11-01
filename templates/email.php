@@ -7,46 +7,70 @@ function jimohne_email(string $bodyHtml, array $cfg, string $fromEmail, bool $si
 {
     $b = $cfg['brand'];
     $s = $cfg['signature'];
-    $accent = $b['accent'] ?? '#1d6cf0';
-    $font = "font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;";
+    // Luxury palette: ink, ivory and champagne gold
+    $ink = '#0e0e10'; $ivory = '#faf7f1'; $paper = '#ffffff'; $gold = '#b8955a'; $goldSoft = '#e7dcc7'; $text = '#2a2a2e'; $muted = '#8a8478';
+    $serif = "font-family:'Playfair Display',Didot,'Bodoni MT',Georgia,'Times New Roman',serif;";
+    $sans = "font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;";
+    $site = preg_replace('#^https?://#', '', $b['website']);
+    $initial = mb_strtoupper(mb_substr($b['name'], 0, 1));
+
     $sig = '';
     if ($signature) {
-        $wa = !empty($s['whatsapp']) ? ' &nbsp;·&nbsp; <a href="https://wa.me/' . e($s['whatsapp']) . '" style="color:' . $accent . ';text-decoration:none">WhatsApp</a>' : '';
+        $wa = !empty($s['whatsapp']) ? '<a href="https://wa.me/' . e($s['whatsapp']) . '" style="color:' . $gold . ';text-decoration:none">WhatsApp</a>&nbsp;&nbsp;<span style="color:' . $goldSoft . '">|</span>&nbsp;&nbsp;' : '';
         $sig = '
-        <tr><td style="padding:0 40px 32px 40px">
-          <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #e8ebf0;width:100%">
-            <tr><td style="padding-top:20px;' . $font . 'font-size:14px;line-height:1.6;color:#4a5361">
-              <div style="font-size:15px;font-weight:700;color:#0f1720">' . e($s['name']) . '</div>
-              <div>' . e($s['title']) . '</div>
-              <div style="margin-top:6px">
-                <a href="mailto:' . e($fromEmail) . '" style="color:' . $accent . ';text-decoration:none">' . e($fromEmail) . '</a>
-                &nbsp;·&nbsp; ' . e($s['phone']) . $wa . '
-              </div>
-              <div><a href="https://' . e($s['website']) . '" style="color:' . $accent . ';text-decoration:none">' . e($s['website']) . '</a></div>
-            </td></tr>
-          </table>
-        </td></tr>';
+          <tr><td class="jm-pad" style="padding:8px 56px 48px 56px">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr><td style="border-top:1px solid ' . $goldSoft . ';font-size:0;line-height:0;height:1px">&nbsp;</td></tr>
+              <tr><td style="padding-top:28px">
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+                  <td valign="top" style="padding-right:18px">
+                    <div style="width:46px;height:46px;line-height:46px;border-radius:50%;background:' . $ink . ';text-align:center;' . $serif . 'font-size:22px;color:' . $gold . '">' . e($initial) . '</div>
+                  </td>
+                  <td valign="top" style="' . $sans . 'font-size:13px;line-height:1.7;color:' . $muted . '">
+                    <div style="' . $serif . 'font-size:19px;color:' . $ink . ';letter-spacing:.2px;line-height:1.3">' . e($s['name']) . '</div>
+                    <div style="font-size:10.5px;letter-spacing:2.6px;text-transform:uppercase;color:' . $gold . ';margin:3px 0 10px 0">' . e($s['title']) . '</div>
+                    <div><a href="mailto:' . e($fromEmail) . '" style="color:' . $text . ';text-decoration:none">' . e($fromEmail) . '</a></div>
+                    <div>' . e($s['phone']) . '</div>
+                    <div style="margin-top:6px">' . $wa . '<a href="https://' . e($s['website']) . '" style="color:' . $gold . ';text-decoration:none">' . e($s['website']) . '</a></div>
+                  </td>
+                </tr></table>
+              </td></tr>
+            </table>
+          </td></tr>';
     }
 
-    return '<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"></head>
-<body style="margin:0;padding:0;background:#f3f5f8">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f3f5f8">
-  <tr><td align="center" style="padding:28px 12px">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:640px;background:#ffffff;border-radius:14px;overflow:hidden;border:1px solid #e8ebf0">
-      <tr><td style="background:#0f1720;padding:22px 40px">
-        <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
-          <td style="' . $font . 'font-size:22px;font-weight:800;color:#ffffff;letter-spacing:-0.3px">' . e($b['name']) . '</td>
-          <td style="padding-left:8px"><span style="display:inline-block;width:20px;height:20px;line-height:20px;border-radius:50%;background:' . $accent . ';color:#ffffff;text-align:center;font-size:12px;font-weight:700;' . $font . '">&#10003;</span></td>
-        </tr></table>
-        <div style="' . $font . 'font-size:12px;color:#93a0ad;margin-top:4px">' . e($b['tagline']) . '</div>
+    return '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="supported-color-schemes" content="light">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+<style>a{color:' . $gold . '}@media (max-width:620px){.jm-pad{padding-left:26px!important;padding-right:26px!important}.jm-h{padding-left:26px!important;padding-right:26px!important}}</style></head>
+<body style="margin:0;padding:0;background:' . $ivory . ';-webkit-text-size-adjust:100%">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:' . $ivory . '">
+  <tr><td align="center" style="padding:40px 14px">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:640px;background:' . $paper . ';border:1px solid #ece4d6">
+      <!-- header -->
+      <tr><td class="jm-h" align="center" style="background:' . $ink . ';padding:40px 56px 34px 56px">
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td align="center">
+          <div style="width:54px;height:54px;line-height:52px;border:1px solid ' . $gold . ';border-radius:50%;text-align:center;' . $serif . 'font-size:26px;color:' . $gold . ';margin:0 auto">' . e($initial) . '</div>
+        </td></tr>
+        <tr><td align="center" style="padding-top:16px;' . $serif . 'font-size:30px;font-weight:500;color:#ffffff;letter-spacing:6px;text-transform:uppercase">' . e($b['name']) . '</td></tr>
+        <tr><td align="center" style="padding-top:12px">
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+            <td style="width:34px;border-top:1px solid ' . $gold . ';font-size:0;line-height:0">&nbsp;</td>
+            <td style="padding:0 12px;' . $sans . 'font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#c9bfae;white-space:nowrap">' . e($b['tagline']) . '</td>
+            <td style="width:34px;border-top:1px solid ' . $gold . ';font-size:0;line-height:0">&nbsp;</td>
+          </tr></table>
+        </td></tr></table>
       </td></tr>
-      <tr><td style="height:4px;background:' . $accent . ';font-size:0;line-height:0">&nbsp;</td></tr>
-      <tr><td style="padding:36px 40px 28px 40px;' . $font . 'font-size:15px;line-height:1.7;color:#1f2933">' . $bodyHtml . '</td></tr>' . $sig . '
+      <tr><td style="height:3px;background:' . $gold . ';font-size:0;line-height:0">&nbsp;</td></tr>
+      <!-- body -->
+      <tr><td class="jm-pad" style="padding:48px 56px 22px 56px;' . $sans . 'font-size:15.5px;line-height:1.8;color:' . $text . '">' . $bodyHtml . '</td></tr>' . $sig . '
     </table>
+    <!-- footer -->
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:640px">
-      <tr><td align="center" style="padding:18px 20px;' . $font . 'font-size:12px;color:#8a94a0">
-        ' . e($b['name']) . ' &nbsp;·&nbsp; <a href="' . e($b['website']) . '" style="color:#8a94a0">' . e(preg_replace('#^https?://#', '', $b['website'])) . '</a>
+      <tr><td align="center" style="padding:26px 20px 6px 20px;' . $serif . 'font-size:15px;color:' . $ink . ';letter-spacing:3px;text-transform:uppercase">' . e($b['name']) . '</td></tr>
+      <tr><td align="center" style="padding:0 20px 8px 20px;' . $sans . 'font-size:11px;letter-spacing:1.5px;color:' . $muted . '">
+        <a href="' . e($b['website']) . '" style="color:' . $muted . ';text-decoration:none">' . e($site) . '</a>
       </td></tr>
+      <tr><td align="center" style="padding:0 20px;' . $sans . 'font-size:10.5px;color:#b3ab9d">&copy; ' . date('Y') . ' ' . e($b['name']) . '. Crafted with care.</td></tr>
     </table>
   </td></tr>
 </table>
@@ -60,13 +84,13 @@ function compose_text_to_html(string $text): string
     $out = '';
     foreach (preg_split("/\n{2,}/", $text) as $para) {
         $p = htmlspecialchars($para, ENT_QUOTES, 'UTF-8');
-        $p = preg_replace('/\*\*(.+?)\*\*/s', '<strong>$1</strong>', $p);
-        $p = preg_replace('#(https?://[^\s<]+)#', '<a href="$1" style="color:#1d6cf0">$1</a>', $p);
+        $p = preg_replace('/\*\*(.+?)\*\*/s', '<strong style="color:#0e0e10;font-weight:600">$1</strong>', $p);
+        $p = preg_replace('#(https?://[^\s<]+)#', '<a href="$1" style="color:#b8955a;text-decoration:underline">$1</a>', $p);
         if (preg_match('/^(- .*(\n|$))+$/', $para)) {
-            $items = array_map(fn($l) => '<li style="margin:0 0 6px 0">' . substr($l, 2) . '</li>', explode("\n", $p));
-            $out .= '<ul style="margin:0 0 16px 0;padding-left:20px">' . implode('', $items) . '</ul>';
+            $items = array_map(fn($l) => '<li style="margin:0 0 8px 0;padding-left:4px">' . substr($l, 2) . '</li>', explode("\n", $p));
+            $out .= '<ul style="margin:0 0 20px 0;padding-left:22px;color:#2a2a2e">' . implode('', $items) . '</ul>';
         } else {
-            $out .= '<p style="margin:0 0 16px 0">' . nl2br($p) . '</p>';
+            $out .= '<p style="margin:0 0 20px 0">' . nl2br($p) . '</p>';
         }
     }
     return $out;
