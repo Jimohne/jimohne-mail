@@ -11,7 +11,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 
 /* logo */
 .logo{display:inline-flex;align-items:center;gap:8px;color:#1d1a3a}
-.logo-icon{width:34px;height:35px;display:block}
+.logo-icon{width:30px;height:30px;display:block}
 .logo-word{font-family:Fredoka,Inter,sans-serif;font-weight:600;font-size:23px;letter-spacing:-.4px;line-height:1}
 .logo-sub{font-weight:500;color:var(--muted);font-size:15px;margin-left:2px}
 
@@ -31,7 +31,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 /* login */
 .login-wrap{min-height:100vh;display:grid;place-items:center;padding:24px;background:radial-gradient(1200px 500px at 50% -10%,#e3ecfd,transparent),var(--bg)}
 .login-card{width:100%;max-width:400px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:36px;box-shadow:0 24px 60px -30px rgba(15,23,32,.25)}
-.login-logo{margin-bottom:26px}.login-logo .logo-word{font-size:28px}.login-logo .logo-icon{width:42px;height:43px}
+.login-logo{margin-bottom:26px}.login-logo .logo-word{font-size:28px}.login-logo .logo-icon{width:38px;height:38px}
 .login-card h1{font-size:21px;color:var(--ink);letter-spacing:-.3px;margin-bottom:6px}
 .login-card label{display:block;font-weight:600;font-size:13px;color:var(--ink);margin-top:16px}
 .login-card input{display:block;width:100%;margin-top:6px;height:44px;padding:0 14px;border:1px solid var(--line);border-radius:10px;background:#fff}
