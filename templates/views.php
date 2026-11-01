@@ -3,7 +3,7 @@
 
 function logo_html(): string
 {
-    return '<span class="logo"><span class="logo-word">' . e(App::$cfg['brand']['name']) . '</span><svg class="logo-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5l2.6 1.9 3.2-.1 1 3.1 2.6 1.9-1 3.1 1 3.1-2.6 1.9-1 3.1-3.2-.1L12 22.5l-2.6-1.9-3.2.1-1-3.1-2.6-1.9 1-3.1-1-3.1 2.6-1.9 1-3.1 3.2.1z" fill="currentColor"/><path d="M7.8 12.3l2.8 2.8 5.6-5.8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="logo-sub">Mail</span></span>';
+    return '<span class="logo"><img class="logo-icon" src="' . App::basePath() . 'assets/brand/jimohne-icon.svg" alt="" width="34" height="35"><span class="logo-word">' . e(mb_strtolower(App::$cfg['brand']['name'])) . '</span><span class="logo-sub">Mail</span></span>';
 }
 
 function icon(string $n): string
@@ -40,9 +40,9 @@ function head(string $title): void
     echo '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">'
         . '<title>' . e($title) . ' · ' . e(App::$cfg['brand']['name']) . ' Mail</title>'
         . '<meta name="robots" content="noindex,nofollow">'
-        . '<link rel="icon" href="' . App::basePath() . 'assets/favicon.svg" type="image/svg+xml">'
-        . '<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">'
-        . '<link rel="stylesheet" href="' . App::basePath() . 'assets/style.css?v=3">'
+        . '<link rel="icon" href="' . App::basePath() . 'assets/brand/jimohne-icon.svg" type="image/svg+xml"><link rel="icon" href="' . App::basePath() . 'assets/brand/favicon-64.png" sizes="64x64" type="image/png"><link rel="apple-touch-icon" href="' . App::basePath() . 'assets/brand/apple-touch-icon.png">'
+        . '<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fredoka:wght@600&display=swap" rel="stylesheet">'
+        . '<link rel="stylesheet" href="' . App::basePath() . 'assets/style.css?v=4">'
         . '<style>:root{--accent:' . e($accent) . '}</style></head><body>';
 }
 

@@ -13,6 +13,9 @@ function jimohne_email(string $bodyHtml, array $cfg, string $fromEmail, bool $si
     $sans = "font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;";
     $site = preg_replace('#^https?://#', '', $b['website']);
     $initial = mb_strtoupper(mb_substr($b['name'], 0, 1));
+    $brandBase = rtrim($b['website'], '/') . '/mail/assets/brand/';
+    $logoUrl = $brandBase . 'jimohne-logo-white.png';
+    $iconUrl = $brandBase . 'jimohne-icon-512.png';
 
     $sig = '';
     if ($signature) {
@@ -24,7 +27,7 @@ function jimohne_email(string $bodyHtml, array $cfg, string $fromEmail, bool $si
               <tr><td style="padding-top:28px">
                 <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
                   <td valign="top" style="padding-right:18px">
-                    <div style="width:46px;height:46px;line-height:46px;border-radius:50%;background:' . $ink . ';text-align:center;' . $serif . 'font-size:22px;color:' . $gold . '">' . e($initial) . '</div>
+                    <img src="' . e($iconUrl) . '" width="48" height="50" alt="" style="display:block;width:48px;height:auto;border:0">
                   </td>
                   <td valign="top" style="' . $sans . 'font-size:13px;line-height:1.7;color:' . $muted . '">
                     <div style="' . $serif . 'font-size:19px;color:' . $ink . ';letter-spacing:.2px;line-height:1.3">' . e($s['name']) . '</div>
@@ -49,9 +52,8 @@ function jimohne_email(string $bodyHtml, array $cfg, string $fromEmail, bool $si
       <!-- header -->
       <tr><td class="jm-h" align="center" style="background:' . $ink . ';padding:40px 56px 34px 56px">
         <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td align="center">
-          <div style="width:54px;height:54px;line-height:52px;border:1px solid ' . $gold . ';border-radius:50%;text-align:center;' . $serif . 'font-size:26px;color:' . $gold . ';margin:0 auto">' . e($initial) . '</div>
+          <img src="' . e($logoUrl) . '" width="230" height="74" alt="' . e($b['name']) . '" style="display:block;width:230px;height:auto;border:0;margin:0 auto">
         </td></tr>
-        <tr><td align="center" style="padding-top:16px;' . $serif . 'font-size:30px;font-weight:500;color:#ffffff;letter-spacing:6px;text-transform:uppercase">' . e($b['name']) . '</td></tr>
         <tr><td align="center" style="padding-top:12px">
           <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
             <td style="width:34px;border-top:1px solid ' . $gold . ';font-size:0;line-height:0">&nbsp;</td>
